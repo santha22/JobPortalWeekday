@@ -1,4 +1,4 @@
-import { combineReducers  } from "redux";
+import { combineReducers } from "redux";
 import jobsReducer from "./reducers/jobsReducer";
 
 const rootReducer = combineReducers({

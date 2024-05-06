@@ -1,62 +1,54 @@
-import {
-    FETCH_JOBS_REQUEST,
-    FETCH_JOBS_SUCCESS,
-    FETCH_JOBS_FAILURE,
-    UPDATE_FILTERS,
-    RESET_JOBS,
-} from "../actions/jobsActions";
-
 const initialState = {
     jobs: [],
+    filteredJobs: [],
     offset: 0,
+    limit: 10,
     loading: false,
     error: null,
-    filters: {
-        companyName: '',
-        jobRole: '',
-        location: '',
-        minExp: '',
-        minJdSalary: '',
-    },
+    filters: {},
 };
 
 const jobsReducer = (state = initialState, action) => {
+
     switch (action.type) {
-        case FETCH_JOBS_REQUEST:
+        case 'FETCH_JOBS_REQUEST':
             return {
                 ...state,
                 loading: true,
                 error: null,
             };
+        
+        case 'FETCH_JOBS_SUCCESS':
+            const newJobs = state.offset === 0 ? action.jobs : [...state.jobs, ...action.jobs];
 
-        case FETCH_JOBS_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                jobs: state.offset === 0 ? action.jobs : [...state.jobs, ...action.jobs],
-                offset: state.offset + action.jobs.length,
+                jobs: newJobs, // Keep original jobs array
+                filteredJobs: action.jobs, // Store newly fetched jobs
+                offset: state.offset + state.limit,
             };
 
-        case FETCH_JOBS_FAILURE:
+        case 'FETCH_JOBS_FAILURE':
             return {
                 ...state,
                 loading: false,
                 error: action.error,
             };
 
-        case UPDATE_FILTERS:
+        case 'UPDATE_FILTERS':
             return {
                 ...state,
                 filters: action.filters,
-            };
+            }
 
-        case RESET_JOBS:
+        case 'RESET_JOBS':
             return {
                 ...state,
                 jobs: [],
+                filteredJobs: [],
                 offset: 0,
-            };
-
+            }
         default:
             return state;
     }
