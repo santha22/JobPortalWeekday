@@ -48,9 +48,8 @@ const Filters = () => {
         })
 
     // In any component where you want to check the filtered jobs
-    // const filteredJobs = useSelector((state) => state.jobs.filteredJobs);
-
-
+    
+    // set the input values 
     const handleFilterChange = (e) => {
         let { name, value } = e.target;
         
@@ -60,13 +59,14 @@ const Filters = () => {
         });
     };
 
+    // to apply filters 
     const applyFilters = () => {
         dispatch(resetJobs());
         dispatch(updateFilters(filters));
         dispatch(fetchJobs({ limit: 10, offset: 0 }));
-        console.log("updated filters", filters);
     };
 
+    // to clear the filters 
     const clearFilters = () => {
         setFilters(initialFilterState); // Reset local component state
         dispatch(resetJobs()); // Reset Redux jobs and offset
@@ -77,7 +77,7 @@ const Filters = () => {
 
     return (
         <Grid container spacing={2}>
-            {/* First row with three fields */}
+            {/* Experience  */}
             <Grid item xs={12} sm={4} md={2}>
                 <FormControl fullWidth>
                     <InputLabel id='minExp-label'>Experience</InputLabel>
@@ -96,6 +96,7 @@ const Filters = () => {
                 </FormControl>
             </Grid>
 
+            {/* company name  */}
             <Grid item xs={12} sm={4} md={2}>
                 <FormControl fullWidth>
                     <InputLabel id='companyName-label'>Company Name</InputLabel>
@@ -114,6 +115,7 @@ const Filters = () => {
                 </FormControl>
             </Grid>
 
+            {/* location  */}
             <Grid item xs={12} sm={4} md={2}>
                 <FormControl fullWidth>
                     <InputLabel id='location-label'>Locations</InputLabel>
@@ -132,7 +134,7 @@ const Filters = () => {
                 </FormControl>
             </Grid>
 
-            {/* Second row with remote*/}
+            {/* remote / on-site  */}
             <Grid item xs={12} sm={4} md={2}>
                 <FormControl fullWidth>
                     <InputLabel id="remote-label">Remote/On-Site</InputLabel>
@@ -150,8 +152,7 @@ const Filters = () => {
             </Grid>
 
 
-
-            {/* Third row with role and min base pay */}
+            {/* role  */}
             <Grid item xs={12} sm={4} md={2}>
                 <FormControl fullWidth>
                     <InputLabel id="role-label">Role</InputLabel>
@@ -172,6 +173,7 @@ const Filters = () => {
 
             </Grid>
 
+            {/* salary  */}
             <Grid item xs={12} sm={4} md={2}>
                 <FormControl fullWidth>
                     <InputLabel id='minJdSalary-label'>Min Base Pay</InputLabel>
@@ -191,7 +193,7 @@ const Filters = () => {
                 </FormControl>
             </Grid>
 
-            {/* Apply button on its own row */}
+            {/* Apply button*/}
             <Grid item xs={12} sm={4} md={2}>
                 <Button
                     variant="contained"

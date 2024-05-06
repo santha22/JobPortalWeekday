@@ -33,21 +33,17 @@ const JobListings = () => {
                 if (filters.remote === 'remote'){
                     matches = matches && job.location === filters.remote;
                 } else {
-                    console.log("remote or not", filters.remote);
                     matches = matches && job.location !== filters.remote;
-                    console.log("matches", matches);
                 }
             }
-            console.log("return match", matches);
             return matches;
         });
 
     };
-
+    
+    // filtered Jobs
     const filteredJobs = getFilteredJobs(jobData.jobs, filters);
 
-
-    // const filters = useSelector((state) => state.jobs.filters);
 
     // Refetch jobs when filters change
     useEffect(() => {
@@ -72,6 +68,7 @@ const JobListings = () => {
 
     return (
         <Grid container spacing={2}>
+            {/* conditional rendering */}
             {filteredJobs.length === 0 ?
                 (
                     <Grid item xs={12}>

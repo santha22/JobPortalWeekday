@@ -21,6 +21,7 @@ const truncateText = (text, length) => {
   return text.length > length ? `${text.substring(0, length)}...` : text;
 };
 
+// function to display the salary ranges 
 const getSalaryRange = (minJdSalary, maxJdSalary, salaryCurrencyCode) => {
   if (minJdSalary == null && maxJdSalary == null) {
     return "Salary information not available"
@@ -34,7 +35,8 @@ const getSalaryRange = (minJdSalary, maxJdSalary, salaryCurrencyCode) => {
 }
 
 
-const JobCard = ({job, ref}) => {
+const JobCard = ({job}) => {
+  // to check expanded or not 
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -42,8 +44,9 @@ const JobCard = ({job, ref}) => {
   }
 
   return (
-    <Card ref={ref} style={{ marginBottom: '16px'}}>
+    <Card  style={{ marginBottom: '16px'}}>
       <CardContent>
+        
         <Grid container alignItems='center' spacing={5}>
           <Grid item xs={1} sm={1} md={1}>
             <Avatar 

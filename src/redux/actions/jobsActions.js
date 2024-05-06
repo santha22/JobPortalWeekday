@@ -44,7 +44,6 @@ export const fetchJobs = ({ limit, offset }) => {
 
             const response = await fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions);
             const result = await response.json();
-            console.log("result", result);
             // dispatch(fetchJobsSuccess(result.jobs)); 
             
             // Check if the data structure is correct
