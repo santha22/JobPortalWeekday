@@ -11,7 +11,7 @@ function App() {
           <Filters />
         </div>
 
-        <div>
+        <div style={{marginTop: "20px"}}>
           <JobListings />
         </div>
     </Container>

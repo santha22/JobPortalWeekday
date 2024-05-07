@@ -69,7 +69,7 @@ const JobListings = () => {
     return (
         <Grid container spacing={2}>
             {/* conditional rendering */}
-            {filteredJobs.length === 0 ?
+            {filteredJobs.length === 0 && jobData.loading === false ?
                 (
                     <Grid item xs={12}>
                         <Typography variant="h6" align="center">

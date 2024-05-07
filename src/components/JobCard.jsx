@@ -94,7 +94,7 @@ const JobCard = ({job}) => {
 
         <Button 
           variant='contained' 
-          color='primary' 
+          style={{backgroundColor: "#55efc4"}} 
           size='small' 
           onClick={() => alert("Apply button clicked")}>
           Apply
